@@ -57,7 +57,9 @@ class SQLCmd
     sql2012cmdPathx86 = File.join(ENV['SystemDrive'],'program files (x86)','microsoft sql server','110','tools','binn', 'sqlcmd.exe')
     sql2008cmdPathx86 = File.join(ENV['SystemDrive'],'program files (x86)','microsoft sql server','100','tools','binn', 'sqlcmd.exe')
     sql2005cmdPathx86 = File.join(ENV['SystemDrive'],'program files (x86)','microsoft sql server','90','tools','binn', 'sqlcmd.exe')
-    @command = [sql2012cmdPath, sql2008cmdPath, sql2005cmdPath, sql2012cmdPathx86, sql2008cmdPathx86, sql2005cmdPathx86].select { |p| File.exist?(p) }.first
+    sql2012sdkCmdPath = File.join(ENV['SystemDrive'], 'program files', 'microsoft sql server', 'client sdk', 'odbc', '110', 'tools', 'binn', 'sqlcmd.exe')
+    sql2012sdkCmdPathx86 = File.join(ENV['SystemDrive'], 'program files (x86)', 'microsoft sql server', 'client sdk', 'odbc', '110', 'tools', 'binn', 'sqlcmd.exe')
+    @command = [sql2012cmdPath, sql2008cmdPath, sql2005cmdPath, sql2012cmdPathx86, sql2008cmdPathx86, sql2005cmdPathx86, sql2012sdkCmdPath, sql2012sdkCmdPathx86].select { |p| File.exist?(p) }.first
     return true if @command != nil
     fail_with_message 'SQLCmd.command cannot be nil.'
     return false
